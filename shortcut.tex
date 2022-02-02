@@ -6,19 +6,22 @@
 \begin{document}
 \section{Debug}
 
-
- interactive $\rightarrow$ python3 -i name.py\\\\
- debug $\rightarrow$ python3 -m pdb name.py \cite{pdb}\\\\
- run $\rightarrow$ r\\\\
- break points, automatically enters pdb $\rightarrow$  breakpoint()\\\\
- Continue execution until the next line in the current function is reached or it returns $\rightarrow$ n\\\\
-Execute the current line and stop at the first possible occasion (either in a function that is called or in the current function)  $\rightarrow$ s\\\\
- list the whole source code for the current function or frame $\rightarrow$ ll  or l (only 11 lines)\\\\
- set breakpoints $\rightarrow$ b(reak) filename:line or function, [condition]\\\\
-If filename: is not specified before the line number lineno, then the current source file is used.\\\\
- To delete a breakpoint $\rightarrow$ cl(ear)\\\\
- continue to next breakpoint $\rightarrow$ c\\\\
- Display the value of expression if it changed, each time execution stops in the current frame. $\rightarrow$  display \textit{variable}\\\\
+\begin{itemize}
+\item interactive $\rightarrow$ python3 -i name.py
+\item debug $\rightarrow$ python3 -m pdb name.py \cite{pdb}
+\item run $\rightarrow$ r
+\item break points, automatically enters pdb $\rightarrow$  breakpoint()
+\item Continue execution until the next line in the current function is reached or it returns $\rightarrow$ n
+\item Execute the current line and stop at the first possible occasion (either in a function that is called or in the current function)  $\rightarrow$ s
+\item list the whole source code for the current function or frame $\rightarrow$ ll  or l (only 11 lines)
+\item set breakpoints $\rightarrow$ b(reak) filename:line or function, [condition]
+\end{itemize}
+If filename: is not specified before the line number lineno, then the current source file is used.
+\begin{itemize}
+\item To delete a breakpoint $\rightarrow$ cl(ear)
+\item continue to next breakpoint $\rightarrow$ c
+\item Display the value of expression if it changed, each time execution stops in the current frame. $\rightarrow$  display \textit{variable}
+\end{itemize}
 
 
 \section{General}
