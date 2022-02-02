@@ -1,0 +1,264 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{biblatex} 
+\addbibresource{shortcut.bib}
+\begin{document}
+\section{Debug}
+
+
+ interactive $\rightarrow$ python3 -i name.py\\\\
+ debug $\rightarrow$ python3 -m pdb name.py \cite{pdb}\\\\
+ run $\rightarrow$ r\\\\
+ break points, automatically enters pdb $\rightarrow$  breakpoint()\\\\
+ Continue execution until the next line in the current function is reached or it returns $\rightarrow$ n\\\\
+Execute the current line and stop at the first possible occasion (either in a function that is called or in the current function)  $\rightarrow$ s\\\\
+ list the whole source code for the current function or frame $\rightarrow$ ll  or l (only 11 lines)\\\\
+ set breakpoints $\rightarrow$ b(reak) filename:line or function, [condition]\\\\
+If filename: is not specified before the line number lineno, then the current source file is used.\\\\
+ To delete a breakpoint $\rightarrow$ cl(ear)\\\\
+ continue to next breakpoint $\rightarrow$ c\\\\
+ Display the value of expression if it changed, each time execution stops in the current frame. $\rightarrow$  display \textit{variable}\\\\
+
+
+\section{General}
+\begin{itemize}
+\item power: $a^{b}$ $\rightarrow$ $a**b$ or pow(a,b)
+\item get (N-i)th element in list $\rightarrow$ a[-i]
+\item in Loop continue to next step of loop $\rightarrow$ continue
+\item exit Loop $\rightarrow$ break
+\item filler $\rightarrow$ pass
+\item in function get extra values $\rightarrow$ *name
+\item in function get fields extra $\rightarrow$ **keywords
+\item define simple function that I can call f(x) $\rightarrow$ fun = lambda x : f(x, y, z, ...)
+\item to get the loop index $\rightarrow$ for i, el in enumerate(elements):
+\item loop over multiple Lists $\rightarrow$ for (x,y,z) in zip(X,Y,Z):
+\item to loop in revesed list $\rightarrow$ for  el in reversed(elements):
+\item private element in class $\rightarrow$ \_element
+\item pass arguments from command line $\rightarrow$ python example.py $<$arguments$>$      \\
+                                                import sys \\
+                                                sys.argv[1]  from 1 to $\infty$ and beyond
+\item round $\rightarrow$ round(float,ditis) \textit{example:} round(43.3321,1) = 43.3
+\item round in output $\rightarrow$ "{idx\_start:idx\_stop} ... whatever you want to write".format(variable\_you\_want\_to show)
+\item read file $\rightarrow$ with open(filename, "r,w,rb,wb") as f:
+                                for line in f:
+\item read csv $\rightarrow$ (pandas) x = pd.read\_csv("filename", header = 0).values
+\item read csv $\rightarrow$ (numpy) x = np.genfromtxt(filename, skip\_header, delimiter)
+\item write csv $\rightarrow$ (pandas) df = pd.Dataframe(matrix)
+                                    df.to\_csv(filename)
+\item try, except, finally
+\end{itemize}
+\section{Style}
+\begin{itemize}
+\item \textbf{Document String} the 1st line in a function should describe its operation (Begin with capital, ends with point.) \cite{Google}
+\item the line should not be longer than 80 step. use line break \textbackslash
+\end{itemize}
+
+Naming convention:
+\begin{itemize}
+\item Packages $\rightarrow$ lower\_with\_under
+\item Modules $\rightarrow$ lower\_with\_under
+\item Classes $\rightarrow$ CapWords
+\item Exceptions $\rightarrow$ CapWords
+\item Functions $\rightarrow$ lower\_with\_under()
+\item Global/Class Constants $\rightarrow$ CAPS\_WITH\_UNDER
+\item Variables $\rightarrow$ lower\_with\_under
+\end{itemize}
+\section{Numpy}
+AXIS: an array can have multiple dimension a.shape = (i,j,k,...) that are in order (axis = 0, axis = 1, axis = 2, ...)
+when I specify in function (such as np.min,np.max,np.sum,...) axis = i I ask that along that axis to perform the operation.
+If I use axis = 0 on a the resulting shape vector will be (j,k,l,...) if I specify axis = 1 the resulting shape vector will be (i,k,l,...)
+
+\begin{itemize}
+\item number of dimension of np array $\rightarrow$ a.ndim
+\item shape of np array $\rightarrow$ a.shape
+\item total size  $\rightarrow$ a.size
+\item create array from List $\rightarrow$ np.array(List, dtype = np.int64, np.float32, ecc...)
+\item range of elements $\rightarrow$ np.linspace(start,stop,num)
+\item range of elements $\rightarrow$ np.arange(start,stop,step)
+\item get (i,j) element $\rightarrow$ a[i,j] ( or  a[i][j]  but best to avoid)
+\item get (i,j) vector $\rightarrow$ a[i,:,j,:] 
+\item stack array to create new one $\rightarrow$ np.vstack (vertical stack) np.hstack (horizonatal) np.array((a,b)) (you choose? not sure)
+\item sum two array with one extra axis   $\rightarrow$ a + b[:, np.newaxis] (new column (n,1)) or a + b[np.newaxis,:] (new line (1,n))
+\item sum  elements  $\rightarrow$ np.sum(a, axis = None) all elements, axis = i over axis i
+\item min/man  elements  $\rightarrow$ np.min(a, axis = None) all elements, axis = i over axis i
+\item transform it into list $\rightarrow$ a.tolist
+\end{itemize}
+
+\section{linalg}
+\begin{itemize}
+\item element wise multiplication $\rightarrow$ a*b
+\item "normal" product  $\rightarrow$ a.dot(b) np.matmul(a,b)
+\end{itemize}
+From now it can be both numpy or scipy but "the normal rule is to just use scipy.linalg as it generally supports all of the numpy.linalg functionality and more" (Stack overflow).
+\begin{itemize}
+\item invert matrix $\rightarrow$ np.linalg.inv(a) or scipy.linalg.inv(a)
+\item pseudo inverse matrix $\rightarrow$ np.linalg.pinv(a) or scipy.linalg.pinv(a)[0] or scipy.linalg.pinv2(a)[0]
+\item solve linear system  $\rightarrow$ x = np.linalg.solve(A, b) or x = scipy.linalg.solve(A, b)
+\item solve  overdetermined linear system $\rightarrow$ x = scipy.linalg.lstsq(A, b)[0]
+\item Singular value decomposition $\rightarrow$ (U,S,V) = scipy.linalg.svd(A)
+\item Cholesky $\rightarrow$ C = scipy.linalg.cholesky(A) and x = scipy.linalg.cho\_solve(C,b)
+\item QR $\rightarrow$ (Q,R,P) = scipy.linalg.qr(A)
+\item Lu $\rightarrow$ C = scypy.linalg.lu(A)
+\item eigenvalues and eigenvectors $\rightarrow$ (D,V) = scipy.linalg.eig(A)
+\item determinant $\rightarrow$ det = scipy.linalg.det(A)
+\item norm $\rightarrow$ norm = scipy.linalg.norm(a, ord = 1,...,inf, "Fro")
+%\item  $\rightarrow$
+%\item  $\rightarrow$
+%\item  $\rightarrow$
+%\item  $\rightarrow$
+%\item  $\rightarrow$
+\end{itemize}
+
+\section{calculus}
+\begin{itemize}
+\item fit $\rightarrow$ param = np.polyfit($x_{meas}$,$y_{meas}$, deg)  $\rightarrow$  $x_0^n p_0+x_1^{n-1} p_1 + ...$
+\item predict on fit $\rightarrow$ $y_{theo}$ = np.polyval(param, $x_{theo}$)
+\item Integral  $\rightarrow$ scipy.integral.quad(f(x),a,b, args=(arg1, arg2))[0] 
+\end{itemize}
+args  example $I = \int f(x,a,b) dx $ I can pass to args a, b in a lambda or function and then  obtain the result as a function of $I(a,b)$ 
+\begin{itemize}
+\item differential equation $\rightarrow$ odeint
+\item minimize $\rightarrow$ x = scipy.optimize.minimize(f(x), $x_0$, method)
+\item least square $\rightarrow$ x = scipy.optimize.leastsq(f(x), $x_0$, args)[0]
+\item root finding $\rightarrow$ x = scipy.optimize.root(f(x),$x_0$)
+\end{itemize}
+\section{Object Oriented}
+\begin{itemize}
+\item inherit $\rightarrow$ class Child(Parent):
+\item call previous constructor $\rightarrow$ in \_\_init\_\_() super.\_\_init\_\_(...)
+\item you can implement polyformism using different classes
+\end{itemize}
+\subsection{Operator Overloading}
+if communtative implement also r+name(such as \_\_radd\_\_, \_\_rsub\_\_)
+\begin{itemize}
+\begin{multicols}{2}
+\item + $\rightarrow$ \_\_add\_\_(self,b)
+\item - $\rightarrow$ \_\_sub\_\_(self,b)
+\item * $\rightarrow$ \_\_mul\_\_(self,b)
+\item / $\rightarrow$ \_\_truediv\_\_(self,b)
+\item // $\rightarrow$ \_\_floordiv\_\_(self,b)
+\item \% $\rightarrow$ \_\_mod\_\_(self,b)
+\item ** $\rightarrow$ \_\_pow\_\_(self,b)
+\item $<$ $\rightarrow$ \_\_LT\_\_(self,b)
+\item $>$ $\rightarrow$ \_\_GT\_\_(self,b)
+\item $<$= $\rightarrow$ \_\_LE\_\_(self,b)
+\item $>$= $\rightarrow$ \_\_GE\_\_(self,b)
+\columnbreak
+\item == $\rightarrow$ \_\_EQ\_\_(self,b)
+\item -= $\rightarrow$ \_\_ISUB\_\_(self,b)
+\item += $\rightarrow$ \_\_IADD\_\_(self,b)
+\item *= $\rightarrow$ \_\_IMUL\_\_(self,b)
+\item /= $\rightarrow$ \_\_IDIV\_\_(self,b)\\
+\item len() $\rightarrow$ \_\_len\_\_(self)
+\item print() $\rightarrow$ \_\_str\_\_(self)
+\item bool() $\rightarrow$ \_\_bool\_\_(self)
+\item self[i] $\rightarrow$ \_\_getitem\_\_(self,i)
+\item self(i, j) $\rightarrow$ \_\_call\_\_(self,i, j)
+\end{multicols}
+\end{itemize}
+\newpage
+
+\section{My functions and classes}
+WORK IN PROGRESS
+
+import librerieTesi.diffuseRaman.
+
+\subsection{core}
+
+\begin{itemize}
+\item time\_to\_idx(array,time)
+\item wavenumber\_to\_idx(array,wn)
+\item fwhm(axis: np.array,data: np.array)
+\end{itemize}
+\subsection{Class RawData}
+\begin{itemize}
+\item Constructor \_\_init\_\_(
+            self,
+            filename: str,
+            n\_banks: int,
+            n\_basis: int,
+            n\_meas: int = -1,
+            compress: bool = True,
+            tot\_banks = None,
+            background\_time = None):
+\item Returns the total counts recorded by the TCSPC board. $\rightarrow$ tot\_counts()  
+\item Change the um of time $\rightarrow$ change\_um\_time(conv)
+\item  Returns the time-domain dtof for every wavelengths. $\rightarrow$ tot\_time\_domain()
+\item  For each measurements it removes the background recorded. $\rightarrow$ remove\_bkg(t\_start, t\_stop)
+\item Selects the desired time-range. \textbf{Note}: it return the nearenst multiple of 2 $\rightarrow$ cut( t\_start, t\_stop)
+\item Bins the gate into the desired number of gates $\rightarrow$ t\_gate\_bin(num\_t\_gates)
+\item Returns the time interval between two time steps. $\rightarrow$ dt()
+\item total number of lines $\rightarrow$ len(self)
+\item self.tot+b.tot $\rightarrow$ +
+\item self.tot-b.tot $\rightarrow$ -
+\end{itemize}
+\subsection{Class Reconstruction}
+\begin{itemize}
+\item Constructor \_\_init\_\_(self,
+            data: rd.RawData,
+            rast\_had: str,
+            lambda\_0: int,
+            method: str="lsmr",
+            alpha: float=0,
+            remove\_first\_line: bool = True,
+            ref\_cal\_wn : Tuple[int, int] = None,
+            ref\_cal\_wl : Tuple[int, int] = None,
+            ref\_bas : int = 32,
+            cake\_cutting = False,
+            normalize = False,
+            filename\_bkg = None,
+            n\_banks\_bkg= None,
+            )
+\item get Wavenumber axis $\rightarrow$ wavenumber()
+\item get Wavelength axis $\rightarrow$ wavelength()
+\item get time axis $\rightarrow$ time()
+\item get data $\rightarrow$ reconstruction()
+\item Find the position of the maximum of the spectrograph $\rightarrow$ find\_maximum\_idx
+\item return CW measurement $\rightarrow$ spectrograph()
+\item It selects the spectra into the desired range $\rightarrow$ cut\_spectra(idx\_start, idx\_stop)
+\item Returns the Signal (Stefan classes) class for the reconstruction $\rightarrow$  get\_signal(idx\_start, n\_points)
+\item get number of spectral points $\rightarrow$ len(self)
+\item get number of reconstructed photons $\rightarrow$ tot\_counts()
+\end{itemize}
+
+\subsection{Class Plot}
+\begin{itemize}
+\item Constructor \_\_init\_\_(ext: str = "png", folder = '')
+\item change output extention $\rightarrow$ change\_ext(ext)
+\item add new reference line $\rightarrow$ add\_vertical\_line(line)
+\item add new measurement to plot $\rightarrow$ add\_line( x, y,label = '')
+\item plot $\rightarrow$ plot\_data(
+             x\_label: str = '',
+             x\_um: str = '',
+             title: str = '',
+             saveas: str = '',
+             is\_log: bool = False,
+             show = True,
+             save = True,
+             show\_legend = False,
+             show\_vertical\_line = True,
+             normalize = False
+             )
+\item vertical plot $\rightarrow$     def multiple\_line\_subplots( y, y\_um ='', y\_digit = 0,
+                                    xlabel = '', x\_um = '',
+                                    title = '', saveas = '',
+                                    is\_setLabel = True, show = True, 
+                                    save = False, show\_legend = False,
+                                     show\_vertical\_line = True,
+                                     normalize = False, fix\_height = False):          
+\item plot 2D $\rightarrow$     def plot\_data2D(x: np.array,
+             y: np.array,
+             data: np.array,
+             x\_label: str,
+             x\_um: str,
+             y\_label: str,
+             y\_um: str,
+             plot\_title: str,
+             saveas: str,
+             show = False,
+             save = True ) -$>$ str:
+\item remove stored data $\rightarrow$ close()             	
+\end{itemize}
+\printbibliography
+\end{document}
