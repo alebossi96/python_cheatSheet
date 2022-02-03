@@ -4,7 +4,7 @@
 \usepackage{biblatex} 
 \addbibresource{shortcut.bib}
 \begin{document}
-\section{Debug}
+\section{Debug from Terminal}
 
 \begin{itemize}
 \item interactive $\rightarrow$ python3 -i name.py
@@ -26,6 +26,10 @@ If filename: is not specified before the line number lineno, then the current so
 
 \section{General}
 \begin{itemize}
+\item logic operation $\rightarrow$ or, and, not
+\item true/false $\rightarrow$ True False
+\item if else statements $\rightarrow$ if elif else
+\item Comparison Operators $\rightarrow$  $<$ \quad  $>$ \quad  $<=$ \quad  $>=$ \quad    $!=$  \quad $==$
 \item power: $a^{b}$ $\rightarrow$ $a**b$ or pow(a,b)
 \item get (N-i)th element in list $\rightarrow$ a[-i]
 \item in Loop continue to next step of loop $\rightarrow$ continue
@@ -33,7 +37,7 @@ If filename: is not specified before the line number lineno, then the current so
 \item filler $\rightarrow$ pass
 \item in function get extra values $\rightarrow$ *name
 \item in function get fields extra $\rightarrow$ **keywords
-\item define simple function that I can call f(x) $\rightarrow$ fun = lambda x : f(x, y, z, ...)
+\item define simple function that I can call f(x, y) $\rightarrow$ f = lambda x, y, ... : h(x, y,..., param1, ...)
 \item to get the loop index $\rightarrow$ for i, el in enumerate(elements):
 \item loop over multiple Lists $\rightarrow$ for (x,y,z) in zip(X,Y,Z):
 \item to loop in revesed list $\rightarrow$ for  el in reversed(elements):
@@ -45,11 +49,12 @@ If filename: is not specified before the line number lineno, then the current so
 \item round in output $\rightarrow$ "{idx\_start:idx\_stop} ... whatever you want to write".format(variable\_you\_want\_to show)
 \item read file $\rightarrow$ with open(filename, "r,w,rb,wb") as f:
                                 for line in f:
-\item read csv $\rightarrow$ (pandas) x = pd.read\_csv("filename", header = 0).values
+\item \textbf{read csv} $\rightarrow$ (pandas) x = pd.read\_csv("filename", header = 0).values (it returns a list with every line)
 \item read csv $\rightarrow$ (numpy) x = np.genfromtxt(filename, skip\_header, delimiter)
 \item write csv $\rightarrow$ (pandas) df = pd.Dataframe(matrix)
                                     df.to\_csv(filename)
 \item try, except, finally
+\item pi $\rightarrow$ from math import pi
 \end{itemize}
 \section{Style}
 \begin{itemize}
@@ -87,6 +92,15 @@ If I use axis = 0 on a the resulting shape vector will be (j,k,l,...) if I speci
 \item min/man  elements  $\rightarrow$ np.min(a, axis = None) all elements, axis = i over axis i
 \item transform it into list $\rightarrow$ a.tolist
 \end{itemize}
+\subsection{Random}
+\begin{itemize}
+\item generator  $\rightarrow$ rng = np.random.default\_rng(seed = None)
+\item random int $\rightarrow$  rng.random.randint(low, high, size = None)
+\item Generate a random float from 0 to 1 $\rightarrow$ rng.random.rand(d0,d1,...)
+\item Draw samples from a Poisson distribution $\rightarrow$ rng.random.poisson(lam=1.0, size=None)
+\item Draw random samples from a normal (Gaussian) distribution $\rightarrow$ rng.random.normal(loc=0.0, scale=1.0, size=None) (loc = $\mu$, scale = $\sigma$)
+\end{itemize}
+The function can be called also from np but they will not have a seed better use a generator
 
 \section{linalg}
 \begin{itemize}
@@ -160,6 +174,7 @@ if communtative implement also r+name(such as \_\_radd\_\_, \_\_rsub\_\_)
 \item self(i, j) $\rightarrow$ \_\_call\_\_(self,i, j)
 \end{multicols}
 \end{itemize}
+
 \newpage
 
 \section{My functions and classes}
