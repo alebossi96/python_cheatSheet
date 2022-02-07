@@ -11,6 +11,7 @@
  }
 \addbibresource{shortcut.bib}
 \begin{document}
+\begin{multicols}{2}
 \section{Debug from Terminal}
 
 \begin{itemize}
@@ -33,33 +34,28 @@ If filename: is not specified before the line number lineno, then the current so
 \begin{itemize}
 \item python3 -m cProfiler [-o output\_file] [-s sort\_order] filename.py
 \end{itemize}
-\begin{table}[!h]
 \begin{center}
 \begin{tabular}{ |c |c |}
 \hline
-sort\_order & explaination \\ \hline \hline
+sort\_order & explaination sorting method \\ \hline \hline
  calls & call count \\ \hline
  cumtime & cumulative time \\  \hline
  line & line position \\ \hline
  name & alphabetical order \\ \hline   
 \end{tabular}
 \end{center}
-\caption{sorting method}
-\end{table}
 
-\begin{table}[!h]
 \begin{center}
 \begin{tabular}{ |c |c |}
 \hline
-sortmethod & explaination \\ \hline \hline
+sortmethod & explaination  of the result\\ \hline \hline
  ncalls & number of calls \\ \hline
  tottime &  total time spent in the given function \\  \hline
  percall &  tottime divided by ncalls \\ \hline
  name & alphabetical order \\ \hline   
 \end{tabular}
+%\caption{}
 \end{center}
-\caption{explaination of the result}
-\end{table}
 
 
 
@@ -144,7 +140,7 @@ If I use axis = 0 on a the resulting shape vector will be (j,k,l,...) if I speci
 \end{itemize}
 The function can be called also from np but they will not have a seed better use a generator
 
-\section{linalg}
+\section{Linear Algebra}
 \begin{itemize}
 \item element wise multiplication $\rightarrow$ a*b
 \item "normal" product  $\rightarrow$ a.dot(b) np.matmul(a,b)
@@ -169,7 +165,7 @@ From now it can be both numpy or scipy but "the normal rule is to just use scipy
 %\item  $\rightarrow$
 \end{itemize}
 
-\section{calculus}
+\section{Calculus}
 \begin{itemize}
 \item fit $\rightarrow$ param = np.polyfit($x_{meas}$,$y_{meas}$, deg)  $\rightarrow$  $x_0^n p_0+x_1^{n-1} p_1 + ...$
 \item predict on fit $\rightarrow$ $y_{theo}$ = np.polyval(param, $x_{theo}$)
@@ -192,7 +188,7 @@ Use inheritance when a relation  \textbf{is a} is present.
 \subsection{Operator Overloading}
 if communtative implement also r+name(such as \_\_radd\_\_, \_\_rsub\_\_)
 \begin{itemize}
-\begin{multicols}{2}
+
 \item + $\rightarrow$ \_\_add\_\_(self,b)
 \item - $\rightarrow$ \_\_sub\_\_(self,b)
 \item * $\rightarrow$ \_\_mul\_\_(self,b)
@@ -215,17 +211,17 @@ if communtative implement also r+name(such as \_\_radd\_\_, \_\_rsub\_\_)
 \item bool() $\rightarrow$ \_\_bool\_\_(self)
 \item self[i] $\rightarrow$ \_\_getitem\_\_(self,i)
 \item self(i, j) $\rightarrow$ \_\_call\_\_(self,i, j)
-\end{multicols}
+
 \end{itemize}
-
+\end{multicols}
 \newpage
-
+\begin{multicols}{2}
 \section{My functions and classes}
 WORK IN PROGRESS
 
 import librerieTesi.diffuseRaman.
 
-\subsection{core}
+\subsection{Core}
 
 \begin{itemize}
 \item time\_to\_idx(array,time)
@@ -321,5 +317,7 @@ import librerieTesi.diffuseRaman.
              save = True ) -$>$ str:
 \item remove stored data $\rightarrow$ close()             	
 \end{itemize}
+\end{multicols}
+
 \printbibliography
 \end{document}
