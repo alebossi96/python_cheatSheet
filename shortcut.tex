@@ -2,6 +2,13 @@
 \usepackage{listings}
 \usepackage{multicol}
 \usepackage{biblatex} 
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=10mm,
+ top=10mm,
+ }
 \addbibresource{shortcut.bib}
 \begin{document}
 \section{Debug from Terminal}
@@ -22,6 +29,38 @@ If filename: is not specified before the line number lineno, then the current so
 \item continue to next breakpoint $\rightarrow$ c
 \item Display the value of expression if it changed, each time execution stops in the current frame. $\rightarrow$  display \textit{variable}
 \end{itemize}
+\subsection{Profiler}
+\begin{itemize}
+\item python3 -m cProfiler [-o output\_file] [-s sort\_order] filename.py
+\end{itemize}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{ |c |c |}
+\hline
+sort\_order & explaination \\ \hline \hline
+ calls & call count \\ \hline
+ cumtime & cumulative time \\  \hline
+ line & line position \\ \hline
+ name & alphabetical order \\ \hline   
+\end{tabular}
+\end{center}
+\caption{sorting method}
+\end{table}
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{ |c |c |}
+\hline
+sortmethod & explaination \\ \hline \hline
+ ncalls & number of calls \\ \hline
+ tottime &  total time spent in the given function \\  \hline
+ percall &  tottime divided by ncalls \\ \hline
+ name & alphabetical order \\ \hline   
+\end{tabular}
+\end{center}
+\caption{explaination of the result}
+\end{table}
+
 
 
 \section{General}
@@ -29,7 +68,8 @@ If filename: is not specified before the line number lineno, then the current so
 \item logic operation $\rightarrow$ or, and, not
 \item true/false $\rightarrow$ True False
 \item if else statements $\rightarrow$ if elif else
-\item Comparison Operators $\rightarrow$  $<$ \quad  $>$ \quad  $<=$ \quad  $>=$ \quad    $!=$  \quad $==$
+\item Comparison Operators $\rightarrow$ $<=$ \quad  $>=$ \quad    $!=$  
+\item remainder  $\rightarrow$ a\% b
 \item power: $a^{b}$ $\rightarrow$ $a**b$ or pow(a,b)
 \item get (N-i)th element in list $\rightarrow$ a[-i]
 \item in Loop continue to next step of loop $\rightarrow$ continue
@@ -55,6 +95,7 @@ If filename: is not specified before the line number lineno, then the current so
                                     df.to\_csv(filename)
 \item try, except, finally
 \item pi $\rightarrow$ from math import pi
+\item \textbf{REMEMBER:} \^{} is not acceptable for powers! you need to use **
 \end{itemize}
 \section{Style}
 \begin{itemize}
@@ -90,7 +131,8 @@ If I use axis = 0 on a the resulting shape vector will be (j,k,l,...) if I speci
 \item sum two array with one extra axis   $\rightarrow$ a + b[:, np.newaxis] (new column (n,1)) or a + b[np.newaxis,:] (new line (1,n))
 \item sum  elements  $\rightarrow$ np.sum(a, axis = None) all elements, axis = i over axis i
 \item min/man  elements  $\rightarrow$ np.min(a, axis = None) all elements, axis = i over axis i
-\item transform it into list $\rightarrow$ a.tolist
+\item transform it into list $\rightarrow$ a.tolist()
+\item copy array $\rightarrow$ np.copy(a)
 \end{itemize}
 \subsection{Random}
 \begin{itemize}
@@ -141,6 +183,7 @@ args  example $I = \int f(x,a,b) dx $ I can pass to args a, b in a lambda or fun
 \item root finding $\rightarrow$ x = scipy.optimize.root(f(x),$x_0$)
 \end{itemize}
 \section{Object Oriented}
+Use inheritance when a relation  \textbf{is a} is present.
 \begin{itemize}
 \item inherit $\rightarrow$ class Child(Parent):
 \item call previous constructor $\rightarrow$ in \_\_init\_\_() super.\_\_init\_\_(...)
