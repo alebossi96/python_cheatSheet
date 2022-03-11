@@ -1,7 +1,7 @@
 \documentclass{article}
-\usepackage{listings}
+\usepackage{minted} 
 \usepackage{multicol}
-\usepackage{biblatex} 
+\usepackage{biblatex}
 \usepackage{geometry}
  \geometry{
  a4paper,
@@ -16,9 +16,10 @@
 
 \begin{itemize}
 \item interactive $\rightarrow$ python3 -i name.py
+\item print to file output $\rightarrow$ python3 name.py > outputfile.txt
 \item debug $\rightarrow$ python3 -m pdb name.py \cite{pdb}
 \item run $\rightarrow$ r
-\item break points, automatically enters pdb $\rightarrow$  breakpoint()
+\item break points, automatically enters pdb $\rightarrow$  \mint{python3}|breakpoint()|
 \item Continue execution until the next line in the current function is reached or it returns $\rightarrow$ n
 \item Execute the current line and stop at the first possible occasion (either in a function that is called or in the current function)  $\rightarrow$ s
 \item list the whole source code for the current function or frame $\rightarrow$ ll  or l (only 11 lines)
@@ -26,31 +27,25 @@
 \end{itemize}
 If filename: is not specified before the line number lineno, then the current source file is used.
 \begin{itemize}
-\item To delete a breakpoint $\rightarrow$ cl(ear)
+\item To delete a breakpoint $\rightarrow$ cl(ear) linea
+\item delete all breakpoints $\rightarrow$ cl(ear)
 \item continue to next breakpoint $\rightarrow$ c
 \item Display the value of expression if it changed, each time execution stops in the current frame. $\rightarrow$  display \textit{variable}
+\item multiline statement $\rightarrow$ condition: statement; statement;
 \end{itemize}
 \subsection{Profiler}
 \begin{itemize}
-\item python3 -m cProfiler [-o output\_file] [-s sort\_order] filename.py
+\item python3 -m cProfile [-o output\_file] [-s sort\_order] filename.py
 \end{itemize}
 \begin{center}
 \begin{tabular}{ |c |c |}
 \hline
 sort\_order & explaination sorting method \\ \hline \hline
- calls & call count \\ \hline
- cumtime & cumulative time \\  \hline
- line & line position \\ \hline
- name & alphabetical order \\ \hline   
-\end{tabular}
-\end{center}
-
-\begin{center}
-\begin{tabular}{ |c |c |}
-\hline
-sortmethod & explaination  of the result\\ \hline \hline
+ \textbf{calls} & call count \\ \hline
+ cumtime & cum. time spent in this and all subfun. \\  \hline
+ \textbf{line} & line position \\ \hline
  ncalls & number of calls \\ \hline
- tottime &  total time spent in the given function \\  \hline
+ \textbf{tottime} &  time in the given function excl. subfun.\\  \hline
  percall &  tottime divided by ncalls \\ \hline
  name & alphabetical order \\ \hline   
 \end{tabular}
@@ -86,7 +81,7 @@ sortmethod & explaination  of the result\\ \hline \hline
 \item read file $\rightarrow$ with open(filename, "r,w,rb,wb") as f:
                                 for line in f:
 \item \textbf{read csv} $\rightarrow$ (pandas) x = pd.read\_csv("filename", header = 0).values (it returns a list with every line)
-\item read csv $\rightarrow$ (numpy) x = np.genfromtxt(filename, skip\_header, delimiter)
+\item read csv $\rightarrow$ (numpy) x = np.genfromtxt(fname, skip\_header, delimiter)
 \item write csv $\rightarrow$ (pandas) df = pd.Dataframe(matrix)
                                     df.to\_csv(filename)
 \item try, except, finally
@@ -145,7 +140,7 @@ The function can be called also from np but they will not have a seed better use
 \item element wise multiplication $\rightarrow$ a*b
 \item "normal" product  $\rightarrow$ a.dot(b) np.matmul(a,b)
 \end{itemize}
-From now it can be both numpy or scipy but "the normal rule is to just use scipy.linalg as it generally supports all of the numpy.linalg functionality and more" (Stack overflow).
+From now it can be both numpy or scipy but "the normal rule is to just use scipy.linalg as it generally supports all of the numpy.linalg functionality and more" \cite{np_sp}.
 \begin{itemize}
 \item invert matrix $\rightarrow$ np.linalg.inv(a) or scipy.linalg.inv(a)
 \item pseudo inverse matrix $\rightarrow$ np.linalg.pinv(a) or scipy.linalg.pinv(a)[0] or scipy.linalg.pinv2(a)[0]
@@ -167,6 +162,7 @@ From now it can be both numpy or scipy but "the normal rule is to just use scipy
 
 \section{Calculus}
 \begin{itemize}
+\item find derivative $\rightarrow$ scipy.misc.derivative(func, x0, dx=1.0, n=1, args=(), order=3)
 \item fit $\rightarrow$ param = np.polyfit($x_{meas}$,$y_{meas}$, deg)  $\rightarrow$  $x_0^n p_0+x_1^{n-1} p_1 + ...$
 \item predict on fit $\rightarrow$ $y_{theo}$ = np.polyval(param, $x_{theo}$)
 \item Integral  $\rightarrow$ scipy.integral.quad(f(x),a,b, args=(arg1, arg2))[0] 
@@ -211,11 +207,26 @@ if communtative implement also r+name(such as \_\_radd\_\_, \_\_rsub\_\_)
 \item bool() $\rightarrow$ \_\_bool\_\_(self)
 \item self[i] $\rightarrow$ \_\_getitem\_\_(self,i)
 \item self(i, j) $\rightarrow$ \_\_call\_\_(self,i, j)
+\item for el in obj: $\rightarrow$ \_\_iter\_\_(self) and to create an iterator from list $\rightarrow$ iter(lista)
 
 \end{itemize}
+\section{TODO}
+\begin{enumerate}
+\item Latex cheat sheet
+\item Object Oriented to better organize software
+\item C $\rightarrow$ Python to improve 50x the speed where needed
+\item Grafici Better result presentation
+\item GUI Improve usability
+\item inkscape better images in presentations
+\item beamer better presentations
+\item bash use better linux
+\item paralelization N times speed improvements
+\end{enumerate}
 \end{multicols}
 \newpage
 \begin{multicols}{2}
+
+
 \section{My functions and classes}
 WORK IN PROGRESS
 
