@@ -210,11 +210,48 @@ if communtative implement also r+name(such as \_\_radd\_\_, \_\_rsub\_\_)
 \item for el in obj: $\rightarrow$ \_\_iter\_\_(self) and to create an iterator from list $\rightarrow$ iter(lista)
 
 \end{itemize}
+\section{C Python API}
+
+\begin{itemize}
+\item \#include$<$numpy/arrayobject.h$>$ 
+\item \#include$<$python3.8/Python.h$>$
+\item the data type is \textbf{PyObject *} remember the *!!
+\item if in c++ you must encapsulate in $\rightarrow$ extern "C"{//code ....};
+\item get the objects from the brackets of function $\rightarrow$ PyArg\_ParseTuple(args, "O", \&el)
+\item int $\rightarrow$ i
+\item object $\rightarrow$ O
+\item set to numpy array the PyObject $\rightarrow$ PyArrayObject *
+\item dimension of np.array $\rightarrow$ PyArray\_DIMS(pyNpName)
+\item start of numpy data $\rightarrow$ (type *) PyArray\_DATA(data\_py);
+\item a.name $\rightarrow$  PyObject *attr = PyObject\_GetAttrString(obj, "name");
+\item PyArg\_Parse(attr, "i", to\_set);
+\end{itemize}
+\begin{enumerate}
+\item static PyObject* c\_fun\_name(PyObject* self, PyObject* args) 
+\item define function $\rightarrow$\\
+static PyMethodDef PyFunctionMethods[] = \{
+  \{"py\_fun\_name", c\_fun\_name, METH\_VARARGS, "docstring"\},
+  ...,
+  \{NULL,NULL\}
+\};
+\item define module $\rightarrow$
+static struct PyModuleDef functionmodule = \{
+  PyModuleDef\_HEAD\_INIT,
+  "name\_module",
+  "module docstring",
+  -1,
+  PyFunctionMethods
+\};
+\item init $\rightarrow$
+PyMODINIT\_FUNC PyInit\_functionmodule(void) 
+\{ 
+  return PyModule\_Create(\&functionmodule); 
+\} 
+\end{enumerate}
 \section{TODO}
 \begin{enumerate}
 \item Latex cheat sheet
 \item Object Oriented to better organize software
-\item C $\rightarrow$ Python to improve 50x the speed where needed
 \item Grafici Better result presentation
 \item GUI Improve usability
 \item inkscape better images in presentations
